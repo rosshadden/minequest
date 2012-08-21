@@ -2025,5 +2025,5 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
         FMLNetworkHandler.openGui(this, mod, modGuiId, world, x, y, z);
     }
 
-    //  Jeremy's first commit!
+    public MinequestTraits traits = new MinequestTraits(this);
 }
