@@ -3,6 +3,9 @@ package net.minecraft.src;
 public class MinequestTraits{
 	private EntityPlayer player;
 
+	private int spent = 0;
+	private int remaining = 0;
+
 	private int strength = 0;
 	private int speed = 0;
 
@@ -27,6 +30,17 @@ public class MinequestTraits{
 	}
 
 	public int add(String trait, int number){
+		if(trait == "spent"){
+			return spent;
+		}
+
+		if(trait == "remaining"){
+			return remaining;
+		}
+
+		//	Increase spent points.
+		spent += 1;
+
 		if(trait == "strength"){
 			return ++strength;
 		}
@@ -40,6 +54,8 @@ public class MinequestTraits{
 			return speed;
 		}
 
+		//	If shit didn't go down, undo that shit.
+		spent -= 1;
 		return -1;
 	}
 }
