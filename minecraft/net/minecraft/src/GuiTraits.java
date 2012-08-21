@@ -3,6 +3,10 @@ package net.minecraft.src;
 public class GuiTraits extends GuiScreen{
 	private EntityPlayer player;
 
+	private int[] colors = new int[]{
+		0xffffff, 0x000000, 0xff0000, 0x66cc00, 0x006400, 0x6a5acd
+	};
+
 	public GuiTraits(EntityPlayer thePlayer){
 		player = thePlayer;
 	}
@@ -17,17 +21,21 @@ public class GuiTraits extends GuiScreen{
 	public void drawScreen(int x, int y, float f){
 		drawDefaultBackground();
 
-		drawCenteredString(fontRenderer, "Traits", width / 2, 20, 0xffffff);
+		drawCenteredString(fontRenderer, "Traits", width / 2, 20, colors[0]);
 
+		drawStats();
+
+		super.drawScreen(x, y, f);
+	}
+
+	public void drawStats(){
 		drawString(fontRenderer, "Experience spent: " + player.traits.get("spent"), width / 3, 40, 0x6600cc);
 		drawString(fontRenderer, "Experience remaining: " + player.traits.get("remaining"), width / 3, 60, 0x6600cc);
 
-		drawString(fontRenderer, "Strength:", width / 3, 100, 0x66cc00);
-		drawString(fontRenderer, player.traits.get("strength"), width / 3 + 60, 100, 0x66cc00);
-		drawString(fontRenderer, "Speed:", width / 3, 120, 0x66cc00);
-		drawString(fontRenderer, player.traits.get("speed"), width / 3 + 60, 120, 0x66cc00);
-
-		super.drawScreen(x, y, f);
+		drawString(fontRenderer, "Strength:", width / 3, 100, colors[3]);
+		drawString(fontRenderer, "" + player.traits.get("strength"), width / 3 + 60, 100, colors[3]);
+		drawString(fontRenderer, "Speed:", width / 3, 120, colors[3]);
+		drawString(fontRenderer, "" + player.traits.get("speed"), width / 3 + 60, 120, colors[3]);
 	}
 
 	public void actionPerformed(GuiButton button){
@@ -38,10 +46,16 @@ public class GuiTraits extends GuiScreen{
 				break;
 			//	Strength++
 			case 1:
+				player.traits.add("strength");
 				break;
 			//	Speed++
 			case 2:
+				player.traits.add("speed");
 				break;
+		}
+
+		if(button.id != 0){
+			drawStats();
 		}
 	}
 
