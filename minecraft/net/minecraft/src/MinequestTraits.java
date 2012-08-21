@@ -34,10 +34,8 @@ public class MinequestTraits{
 		if(trait == "speed"){
 			speed += 1;
 
-			//	This has been changed in 1.3.2...
-			//	player.capabilities.getWalkSpeed() is read-only access.
-			player.speedOnGround = 0.05F * speed;
-			player.speedInAir = 0.01F * speed;
+			player.capabilities.setWalkSpeed(0.05F * speed);
+			player.capabilities.setFlySpeed(0.01F * speed);
 
 			return speed;
 		}

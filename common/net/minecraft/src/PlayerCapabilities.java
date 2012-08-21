@@ -75,4 +75,9 @@ public class PlayerCapabilities
     {
         return this.walkSpeed;
     }
+
+    @SideOnly(Side.CLIENT)
+    public void setWalkSpeed(float speed){
+        this.walkSpeed = speed;
+    }
 }
