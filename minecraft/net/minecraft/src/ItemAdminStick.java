@@ -7,9 +7,9 @@ public class ItemAdminStick extends Item{
 		maxStackSize = 4;
 	}
 
-	public boolean onDroppedByPlayer(ItemStack item, EntityPlayer player){
+	public ItemStack onItemRightClick(ItemStack item, World world, EntityPlayer player){
 		player.addExperience(10);
 
-		return true;
+		return item;
 	}
 }
