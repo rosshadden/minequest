@@ -3,6 +3,7 @@ package net.minecraft.src;
 public class ItemAdminStick extends Item{
 	public ItemAdminStick(int i){
 		super(i);
+        this.setTabToDisplayOn(CreativeTabs.tabCombat);
 		maxStackSize = 4;
 	}
 
