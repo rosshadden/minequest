@@ -5,12 +5,17 @@ public class MinequestTraits{
 
 	private int spent = 0;
 	private int remaining = 0;
+	private int currentLevel = 0;
 
 	private int strength = 0;
 	private int speed = 0;
 
 	public MinequestTraits(EntityPlayer thePlayer){
 		player = thePlayer;
+	}
+
+	protected void update(){
+		remaining = player.experienceLevel;
 	}
 
 	public int get(String trait){
