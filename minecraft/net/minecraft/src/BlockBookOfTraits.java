@@ -9,7 +9,7 @@ public class BlockBookOfTraits extends Block{
         this.setCreativeTab(CreativeTabs.tabDeco);
 	}
 
-	public boolean blockActivated(World world, int x, int y, int z, EntityPlayer player){
+	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9){
 		ModLoader.openGUI(player, new GuiTraits(player));
 
 		return true;
