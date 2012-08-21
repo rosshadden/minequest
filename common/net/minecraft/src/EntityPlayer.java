@@ -1869,6 +1869,9 @@ public abstract class EntityPlayer extends EntityLiving implements ICommandSende
     private void increaseLevel()
     {
         ++this.experienceLevel;
+
+        //  MQ: Update trait points.
+        this.traits.update();
     }
 
     /**
