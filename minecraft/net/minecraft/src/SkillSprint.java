@@ -3,7 +3,7 @@ package net.minecraft.src;
 import java.util.Timer;
 
 public class SkillSprint extends Skill{
-	public Skill(int id, String name){
+	public SkillSprint(int id, String name){
 		super(id, name);
 
 		this.setIconCoord(10, 3);
