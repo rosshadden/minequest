@@ -53,8 +53,8 @@ public class MinequestTraits{
 		if(trait == "speed"){
 			speed += 1;
 
-			player.capabilities.setWalkSpeed(0.05F * speed);
-			player.capabilities.setFlySpeed(0.01F * speed);
+			// player.capabilities.setWalkSpeed(0.05F * speed);
+			// player.capabilities.setFlySpeed(0.01F * speed);
 
 			return speed;
 		}
