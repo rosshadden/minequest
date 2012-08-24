@@ -1,16 +1,15 @@
 package net.minecraft.src;
 
-public class BlockBookOfTraits extends Block{
-	public BlockBookOfTraits(int i){
-		super(i, 32, Material.wood);
-        this.blockIndexInTexture = 24;
-        this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.75F, 1.0F);
+public class BlockBookOfSkills extends Block{
+	public BlockBookOfSkills(int i){
+		super(i, Material.wood);
+        this.blockIndexInTexture = 48;
         this.setLightOpacity(0);
         this.setCreativeTab(CreativeTabs.tabDeco);
 	}
 
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9){
-		ModLoader.openGUI(player, new GuiTraits(player));
+		ModLoader.openGUI(player, new GuiSkills(player));
 
 		return true;
 	}
