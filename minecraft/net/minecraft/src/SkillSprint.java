@@ -1,41 +1,24 @@
 package net.minecraft.src;
 
 public class SkillSprint extends Skill{
-	private EntityPlayer player;
-	private boolean isActive = false;
-	private int duration = 100;
-	private int activeFor = 0;
-
 	public SkillSprint(int id, String name){
-		super(id, name);
+		super(id, name, 200, 0);
 
 		this.setIconCoord(10, 3);
 	}
 
-	public ItemStack onItemRightClick(ItemStack item, World world, EntityPlayer thePlayer){
-		player = thePlayer;
+	public int onActivate(EntityPlayer player){
+		System.out.println("LOG: SPRINT IS NOW ACTIVE!");
 
-		isActive = true;
+		player.capabilities.setWalkSpeed(0.12F);
 
-		// Class c = ModLoader.getMinecraftInstance().thePlayer.capabilities.getClass();
-		// Field f = c.getDeclaredField("walkSpeed");
-		// f.setAccessible(true);
-		// f.set(ModLoader.getMinecraftInstance().thePlayer.capabilities, 1.0F);
-
-		return item;
+		return 2;
 	}
 
-	public void onUpdate(ItemStack item, World world, Entity entity, int num, boolean bool){
-		if(isActive && entity instanceof EntityPlayer){
-			if(activeFor < duration){
-				player.capabilities.setWalkSpeed(0.12F);
-			}else{
-				//	WHY DOES THIS NOT RESET SPEED?!?!
-				player.capabilities.setWalkSpeed(0.1F);
-				isActive = false;
-			}
+	public void onDeactivate(EntityPlayer player){
+		System.out.println("LOG: SPRINT IS NOW INACTIVE!");
 
-			activeFor = (activeFor + 1) % duration;
-		}
+		//	WHY DOES THIS NOT RESET SPEED?!?!
+		player.capabilities.setWalkSpeed(0.1F);
 	}
 }
