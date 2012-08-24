@@ -7,12 +7,12 @@ public class SkillSprint extends Skill{
 		this.setIconCoord(10, 3);
 	}
 
-	public int onActivate(EntityPlayer player){
+	public int onActivate(EntityPlayer player, int level){
 		System.out.println("LOG: SPRINT IS NOW ACTIVE!");
 
 		player.capabilities.setWalkSpeed(0.12F);
 
-		return 2;
+		return 200;
 	}
 
 	public void onDeactivate(EntityPlayer player){

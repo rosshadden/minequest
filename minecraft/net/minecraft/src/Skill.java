@@ -2,8 +2,9 @@ package net.minecraft.src;
 
 public class Skill extends Item{
 	private EntityPlayer player;
+	private int duration;
+
 	private boolean isActive = false;
-	private int duration = 100;
 	private int activeFor = 0;
 
 	public Skill(int id, String name, int rechargeTime, int castTime){
@@ -18,8 +19,8 @@ public class Skill extends Item{
 
 	public void activate(EntityPlayer thePlayer){
 		player = thePlayer;
+		duration = this.onActivate(player, player.experienceLevel);
 		isActive = true;
-		this.onActivate(player);
 	}
 
 	public void deactivate(EntityPlayer thePlayer){
@@ -27,7 +28,7 @@ public class Skill extends Item{
 		this.onDeactivate(thePlayer);
 	}
 
-	public int onActivate(EntityPlayer player){
+	public int onActivate(EntityPlayer player, int level){
 		return -1;
 	}
 
