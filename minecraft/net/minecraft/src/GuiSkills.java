@@ -20,7 +20,7 @@ public class GuiSkills extends GuiScreen{
 		drawDefaultBackground();
 
 		drawCenteredString(fontRenderer, "Skills", width / 2, 20, 0xffffff);
-		
+
 		super.drawScreen(x, y, f);
 	}
 

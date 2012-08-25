@@ -1,6 +1,12 @@
 package net.minecraft.src;
 
+import net.minecraft.client.Minecraft;
+
 public class mod_Minequest extends BaseMod{
+	private EntityPlayer player = ModLoader.getMinecraftInstance().thePlayer;
+
+	private GuiSkillbar skillbar = new GuiSkillbar(player);
+
 	public static final Item adminStick = (new ItemAdminStick(512)).setIconCoord(5, 3).setItemName("adminStick");
 	public static final Block bookOfTraits = (new BlockBookOfTraits(160)).setBlockName("bookOfTraits").setHardness(3F).setResistance(4F).setLightValue(1F);
 	public static final Block bookOfSkills = (new BlockBookOfSkills(161)).setBlockName("bookOfSkills").setHardness(3F).setResistance(4F).setLightValue(1F);
@@ -50,6 +56,14 @@ public class mod_Minequest extends BaseMod{
 				'#', Block.dirt
 			}
 		);
+
+		ModLoader.setInGameHook(this, true, false);
+	}
+
+	public boolean onTickInGame(float time, Minecraft game){
+		skillbar.draw();
+
+		return true;
 	}
 
 	public String getVersion(){
