@@ -16,10 +16,12 @@ public class GuiSkillbar extends Gui{
 		ScaledResolution screen = new ScaledResolution(game.gameSettings, game.displayWidth, game.displayHeight);
 		int width = screen.getScaledWidth();
 		int height = screen.getScaledHeight();
+		int barWidth = 182;
+		int barHeight = 22;
 
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		GL11.glBindTexture(GL11.GL_TEXTURE_2D, game.renderEngine.getTexture("/gui/gui.png"));
 
-		drawTexturedModalRect(width / 2, 0, 0, 0, 182, 22);
+		drawTexturedModalRect(width / 2 - barWidth / 2, 0, 0, 0, barWidth, barHeight);
 	}
 }
