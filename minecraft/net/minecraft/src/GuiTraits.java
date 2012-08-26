@@ -21,7 +21,7 @@ public class GuiTraits extends GuiScreen{
 	public void drawScreen(int x, int y, float f){
 		drawDefaultBackground();
 
-		drawCenteredString(fontRenderer, "Traits", width / 2, 20, colors[0]);
+		drawCenteredString(fontRenderer, "Traits", width / 2, 40, colors[0]);
 
 		drawStats();
 
@@ -29,8 +29,8 @@ public class GuiTraits extends GuiScreen{
 	}
 
 	public void drawStats(){
-		drawString(fontRenderer, "Experience spent: " + player.traits.get("spent"), width / 3, 40, 0x6600cc);
-		drawString(fontRenderer, "Experience remaining: " + player.traits.get("remaining"), width / 3, 60, 0x6600cc);
+		drawString(fontRenderer, "Experience spent: " + player.traits.get("spent"), width / 3, 60, 0x6600cc);
+		drawString(fontRenderer, "Experience remaining: " + player.traits.get("remaining"), width / 3, 80, 0x6600cc);
 
 		drawString(fontRenderer, "Strength:", width / 3, 100, colors[3]);
 		drawString(fontRenderer, "" + player.traits.get("strength"), width / 3 + 60, 100, colors[3]);

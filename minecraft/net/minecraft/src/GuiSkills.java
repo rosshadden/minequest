@@ -4,8 +4,8 @@ public class GuiSkills extends GuiScreen{
 	private EntityPlayer player;
 	private Container skills;
 
-	public GuiSkills(EntityPlayer thePlayer){
-		player = thePlayer;
+	public GuiSkills(){
+		player = this.mc.thePlayer;
 	}
 
 	public boolean doesGuiPauseGame(){
@@ -19,7 +19,7 @@ public class GuiSkills extends GuiScreen{
 	public void drawScreen(int x, int y, float f){
 		drawDefaultBackground();
 
-		drawCenteredString(fontRenderer, "Skills", width / 2, 20, 0xffffff);
+		drawCenteredString(fontRenderer, "Skills", width / 2, 40, 0xffffff);
 
 		super.drawScreen(x, y, f);
 	}
@@ -28,7 +28,7 @@ public class GuiSkills extends GuiScreen{
 		switch(button.id){
 			//	Exit.
 			case 0:
-				this.mc.thePlayer.closeScreen();
+				player.closeScreen();
 				break;
 		}
 	}
@@ -36,7 +36,7 @@ public class GuiSkills extends GuiScreen{
 	protected void keyTyped(char something, int key){
 		//	Close the screen if the user presses the inventory key.
 		if (key == 1 || key == this.mc.gameSettings.keyBindInventory.keyCode){
-			this.mc.thePlayer.closeScreen();
+			player.closeScreen();
 		}
 	}
 }
