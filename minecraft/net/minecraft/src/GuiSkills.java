@@ -19,16 +19,15 @@ public class GuiSkills extends GuiContainer{
 	 * Draw the background layer for the GuiContainer (everything behind the items)
 	 */
 	protected void drawGuiContainerBackgroundLayer(float par1, int par2, int par3){
-		int var4 = this.mc.renderEngine.getTexture("/gui/trap.png");
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		this.mc.renderEngine.bindTexture(var4);
+
+		int texture = this.mc.renderEngine.getTexture("/img/gui/skills.png");
+		this.mc.renderEngine.bindTexture(texture);
+
 		int var5 = (this.width - this.xSize) / 2;
 		int var6 = (this.height - this.ySize) / 2;
 
 		//	Background, and inventory slots.
 		this.drawTexturedModalRect(var5, var6, 0, 0, this.xSize, this.ySize);
-
-		//	Skillbar slots.
-		// this.drawTexturedModalRect(var5, var6, 6, 140, 170, 160);
 	}
 }
