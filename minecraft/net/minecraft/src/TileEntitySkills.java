@@ -3,12 +3,12 @@ package net.minecraft.src;
 import java.util.Random;
 
 public class TileEntitySkills extends TileEntity implements IInventory{
-    private ItemStack[] dispenserContents = new ItemStack[9];
+    private ItemStack[] skillsContents = new ItemStack[9];
 
     /**
      * random number generator for instance. Used in random item stack selection.
      */
-    private Random dispenserRandom = new Random();
+    private Random skillsRandom = new Random();
 
     /**
      * Returns the number of slots in the inventory.
@@ -21,7 +21,7 @@ public class TileEntitySkills extends TileEntity implements IInventory{
      * Returns the stack in slot i
      */
     public ItemStack getStackInSlot(int par1){
-        return this.dispenserContents[par1];
+        return this.skillsContents[par1];
     }
 
     /**
@@ -29,20 +29,20 @@ public class TileEntitySkills extends TileEntity implements IInventory{
      * new stack.
      */
     public ItemStack decrStackSize(int par1, int par2){
-        if (this.dispenserContents[par1] != null){
+        if (this.skillsContents[par1] != null){
             ItemStack var3;
 
-            if (this.dispenserContents[par1].stackSize <= par2){
-                var3 = this.dispenserContents[par1];
-                this.dispenserContents[par1] = null;
+            if (this.skillsContents[par1].stackSize <= par2){
+                var3 = this.skillsContents[par1];
+                this.skillsContents[par1] = null;
                 this.onInventoryChanged();
                 return var3;
             }
             else{
-                var3 = this.dispenserContents[par1].splitStack(par2);
+                var3 = this.skillsContents[par1].splitStack(par2);
 
-                if (this.dispenserContents[par1].stackSize == 0){
-                    this.dispenserContents[par1] = null;
+                if (this.skillsContents[par1].stackSize == 0){
+                    this.skillsContents[par1] = null;
                 }
 
                 this.onInventoryChanged();
@@ -59,9 +59,9 @@ public class TileEntitySkills extends TileEntity implements IInventory{
      * like when you close a workbench GUI.
      */
     public ItemStack getStackInSlotOnClosing(int par1){
-        if (this.dispenserContents[par1] != null){
-            ItemStack var2 = this.dispenserContents[par1];
-            this.dispenserContents[par1] = null;
+        if (this.skillsContents[par1] != null){
+            ItemStack var2 = this.skillsContents[par1];
+            this.skillsContents[par1] = null;
             return var2;
         }
         else{
@@ -73,8 +73,8 @@ public class TileEntitySkills extends TileEntity implements IInventory{
         int var1 = -1;
         int var2 = 1;
 
-        for (int var3 = 0; var3 < this.dispenserContents.length; ++var3){
-            if (this.dispenserContents[var3] != null && this.dispenserRandom.nextInt(var2++) == 0){
+        for (int var3 = 0; var3 < this.skillsContents.length; ++var3){
+            if (this.skillsContents[var3] != null && this.skillsRandom.nextInt(var2++) == 0){
                 var1 = var3;
             }
         }
@@ -86,7 +86,7 @@ public class TileEntitySkills extends TileEntity implements IInventory{
      * Sets the given item stack to the specified slot in the inventory (can be crafting or armor sections).
      */
     public void setInventorySlotContents(int par1, ItemStack par2ItemStack){
-        this.dispenserContents[par1] = par2ItemStack;
+        this.skillsContents[par1] = par2ItemStack;
 
         if (par2ItemStack != null && par2ItemStack.stackSize > this.getInventoryStackLimit()){
             par2ItemStack.stackSize = this.getInventoryStackLimit();
@@ -96,9 +96,9 @@ public class TileEntitySkills extends TileEntity implements IInventory{
     }
 
     public int func_70360_a(ItemStack par1ItemStack){
-        for (int var2 = 0; var2 < this.dispenserContents.length; ++var2){
-            if (this.dispenserContents[var2] == null || this.dispenserContents[var2].itemID == 0){
-                this.dispenserContents[var2] = par1ItemStack;
+        for (int var2 = 0; var2 < this.skillsContents.length; ++var2){
+            if (this.skillsContents[var2] == null || this.skillsContents[var2].itemID == 0){
+                this.skillsContents[var2] = par1ItemStack;
                 return var2;
             }
         }
@@ -110,7 +110,7 @@ public class TileEntitySkills extends TileEntity implements IInventory{
      * Returns the name of the inventory.
      */
     public String getInvName(){
-        return "container.dispenser";
+        return "container.skills";
     }
 
     /**
@@ -119,14 +119,14 @@ public class TileEntitySkills extends TileEntity implements IInventory{
     public void readFromNBT(NBTTagCompound par1NBTTagCompound){
         super.readFromNBT(par1NBTTagCompound);
         NBTTagList var2 = par1NBTTagCompound.getTagList("Items");
-        this.dispenserContents = new ItemStack[this.getSizeInventory()];
+        this.skillsContents = new ItemStack[this.getSizeInventory()];
 
         for (int var3 = 0; var3 < var2.tagCount(); ++var3){
             NBTTagCompound var4 = (NBTTagCompound)var2.tagAt(var3);
             int var5 = var4.getByte("Slot") & 255;
 
-            if (var5 >= 0 && var5 < this.dispenserContents.length){
-                this.dispenserContents[var5] = ItemStack.loadItemStackFromNBT(var4);
+            if (var5 >= 0 && var5 < this.skillsContents.length){
+                this.skillsContents[var5] = ItemStack.loadItemStackFromNBT(var4);
             }
         }
     }
@@ -138,11 +138,11 @@ public class TileEntitySkills extends TileEntity implements IInventory{
         super.writeToNBT(par1NBTTagCompound);
         NBTTagList var2 = new NBTTagList();
 
-        for (int var3 = 0; var3 < this.dispenserContents.length; ++var3){
-            if (this.dispenserContents[var3] != null){
+        for (int var3 = 0; var3 < this.skillsContents.length; ++var3){
+            if (this.skillsContents[var3] != null){
                 NBTTagCompound var4 = new NBTTagCompound();
                 var4.setByte("Slot", (byte)var3);
-                this.dispenserContents[var3].writeToNBT(var4);
+                this.skillsContents[var3].writeToNBT(var4);
                 var2.appendTag(var4);
             }
         }
