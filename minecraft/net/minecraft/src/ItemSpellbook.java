@@ -8,7 +8,7 @@ public class ItemSpellbook extends Item{
 	}
 
 	public ItemStack onItemRightClick(ItemStack item, World world, EntityPlayer player){
-		ModLoader.openGUI(player, new GuiSkills());
+		ModLoader.openGUI(player, new GuiSkills(player));
 
 		return item;
 	}

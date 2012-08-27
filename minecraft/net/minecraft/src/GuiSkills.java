@@ -4,8 +4,8 @@ public class GuiSkills extends GuiScreen{
 	private EntityPlayer player;
 	private Container skills;
 
-	public GuiSkills(){
-		player = this.mc.thePlayer;
+	public GuiSkills(EntityPlayer thePlayer){
+		player = thePlayer;
 	}
 
 	public boolean doesGuiPauseGame(){
