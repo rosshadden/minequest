@@ -1,42 +1,29 @@
 package net.minecraft.src;
 
-public class GuiSkills extends GuiScreen{
-	private EntityPlayer player;
-	private Container skills;
+import org.lwjgl.opengl.GL11;
 
-	public GuiSkills(EntityPlayer thePlayer){
-		player = thePlayer;
+public class GuiSkills extends GuiContainer{
+	public GuiSkills(InventoryPlayer inventory, TileEntitySkills tileEntitySkills){
+		super(new ContainerSkills(inventory, tileEntitySkills));
 	}
 
-	public boolean doesGuiPauseGame(){
-		return false;
+	/**
+	 * Draw the foreground layer for the GuiContainer (everything in front of the items)
+	 */
+	protected void drawGuiContainerForegroundLayer(){
+		this.fontRenderer.drawString(StatCollector.translateToLocal("container.dispenser"), 60, 6, 4210752);
+		this.fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 8, this.ySize - 96 + 2, 4210752);
 	}
 
-	public void initGui(){
-		controlList.add(new GuiButton(0, width / 2 - 100, height / 6 + 168, "Exit"));
-	}
-
-	public void drawScreen(int x, int y, float f){
-		drawDefaultBackground();
-
-		drawCenteredString(fontRenderer, "Skills", width / 2, 40, 0xffffff);
-
-		super.drawScreen(x, y, f);
-	}
-
-	public void actionPerformed(GuiButton button){
-		switch(button.id){
-			//	Exit.
-			case 0:
-				player.closeScreen();
-				break;
-		}
-	}
-
-	protected void keyTyped(char something, int key){
-		//	Close the screen if the user presses the inventory key.
-		if (key == 1 || key == this.mc.gameSettings.keyBindInventory.keyCode){
-			player.closeScreen();
-		}
+	/**
+	 * Draw the background layer for the GuiContainer (everything behind the items)
+	 */
+	protected void drawGuiContainerBackgroundLayer(float par1, int par2, int par3){
+		int var4 = this.mc.renderEngine.getTexture("/gui/trap.png");
+		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+		this.mc.renderEngine.bindTexture(var4);
+		int var5 = (this.width - this.xSize) / 2;
+		int var6 = (this.height - this.ySize) / 2;
+		this.drawTexturedModalRect(var5, var6, 0, 0, this.xSize, this.ySize);
 	}
 }

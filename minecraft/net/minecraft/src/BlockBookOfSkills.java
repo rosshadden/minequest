@@ -13,7 +13,9 @@ public class BlockBookOfSkills extends Block{
 	}
 
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9){
-		ModLoader.openGUI(player, new GuiSkills(player));
+		TileEntitySkills tileEntity = (TileEntitySkills)world.getBlockTileEntity(x, y, z);
+
+		ModLoader.openGUI(player, new GuiSkills(player.inventory, tileEntity));
 
 		return true;
 	}
