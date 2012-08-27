@@ -8,11 +8,11 @@ public class ContainerSkills extends Container{
         int var3;
         int var4;
 
-        for (var3 = 0; var3 < 3; ++var3){
-            for (var4 = 0; var4 < 3; ++var4){
-                this.addSlotToContainer(new Slot(theTileEntitySkills, var4 + var3 * 3, 62 + var4 * 18, 17 + var3 * 18));
-            }
-        }
+        // for (var3 = 0; var3 < 3; ++var3){
+        //     for (var4 = 0; var4 < 3; ++var4){
+        //         this.addSlotToContainer(new Slot(theTileEntitySkills, var4 + var3 * 3, 62 + var4 * 18, 17 + var3 * 18));
+        //     }
+        // }
 
         for (var3 = 0; var3 < 3; ++var3){
             for (var4 = 0; var4 < 9; ++var4){

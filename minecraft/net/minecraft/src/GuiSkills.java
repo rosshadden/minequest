@@ -24,6 +24,11 @@ public class GuiSkills extends GuiContainer{
 		this.mc.renderEngine.bindTexture(var4);
 		int var5 = (this.width - this.xSize) / 2;
 		int var6 = (this.height - this.ySize) / 2;
+
+		//	Background, and inventory slots.
 		this.drawTexturedModalRect(var5, var6, 0, 0, this.xSize, this.ySize);
+
+		//	Skillbar slots.
+		// this.drawTexturedModalRect(var5, var6, 6, 140, 170, 160);
 	}
 }
