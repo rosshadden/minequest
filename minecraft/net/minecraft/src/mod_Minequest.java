@@ -7,12 +7,12 @@ public class mod_Minequest extends BaseMod{
 
 	private GuiSkillbar skillbar = new GuiSkillbar(player);
 
-	public static final Item spellbook = (new ItemSpellbook(512)).setIconCoord(5, 3).setItemName("spellbook");
+	public static final Item spellbook = (new ItemSpellbook(512)).setIconCoord(11, 3).setItemName("spellbook");
 	public static final Item adminStick = (new ItemAdminStick(513)).setIconCoord(5, 3).setItemName("adminStick");
 	public static final Block bookOfTraits = (new BlockBookOfTraits(160)).setBlockName("bookOfTraits").setHardness(3F);
 	public static final Block bookOfSkills = (new BlockBookOfSkills(161)).setBlockName("bookOfSkills").setHardness(3.5F).setRequiresSelfNotify();
 
-	public static final Skill sprint = new SkillSprint(513, "sprint");
+	public static final Skill sprint = new SkillSprint(1024, "sprint");
 
 	public void load(){
 		ModLoader.addName(spellbook, "Spellbook");
