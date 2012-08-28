@@ -1,16 +1,18 @@
 package net.minecraft.src;
 
 public class ContainerSkills extends Container{
-    private TileEntitySkills tileEntitySkills;
+    private IInventory skillbar;
 
-    public ContainerSkills(IInventory inventory, TileEntitySkills theTileEntitySkills){
-        this.tileEntitySkills = theTileEntitySkills;
-        IInventory skillbar = new InventoryBasic("Skills", 9);
+    public ContainerSkills(IInventory inventory, IInventory theSkillbar){
+        this.skillbar = theSkillbar;
+        IInventory fakeSkillbar = new InventoryBasic("Skillbar", 9);
         int i;
         int j;
 
         for (i = 0; i < 9; ++i){
-            this.addSlotToContainer(new Slot(skillbar, i, 8 + i * 18, 33));
+            this.addSlotToContainer(
+                new SlotSkill(fakeSkillbar, i, 8 + i * 18, 33)
+            );
         }
 
         for (i = 0; i < 3; ++i){
@@ -25,7 +27,8 @@ public class ContainerSkills extends Container{
     }
 
     public boolean canInteractWith(EntityPlayer player){
-        return this.tileEntitySkills.isUseableByPlayer(player);
+        // return this.skillbar.isUseableByPlayer(player);
+        return true;
     }
 
     /**

@@ -15,6 +15,8 @@ public class mod_Minequest extends BaseMod{
 	public static final Skill sprint = new SkillSprint(1024, "sprint");
 
 	public void load(){
+		ModLoader.registerTileEntity(net.minecraft.src.TileEntitySkills.class, "Skills");
+
 		ModLoader.addName(spellbook, "Spellbook");
 		ModLoader.addRecipe(
 			new ItemStack(spellbook, 1),

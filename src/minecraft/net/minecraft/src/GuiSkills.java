@@ -3,16 +3,16 @@ package net.minecraft.src;
 import org.lwjgl.opengl.GL11;
 
 public class GuiSkills extends GuiContainer{
-	public GuiSkills(InventoryPlayer inventory, TileEntitySkills tileEntitySkills){
-		super(new ContainerSkills(inventory, tileEntitySkills));
+	public GuiSkills(InventoryPlayer inventory, IInventory skillbar){
+		super(new ContainerSkills(inventory, skillbar));
 	}
 
 	/**
 	 * Draw the foreground layer for the GuiContainer (everything in front of the items)
 	 */
 	protected void drawGuiContainerForegroundLayer(){
-		// this.fontRenderer.drawString(StatCollector.translateToLocal("container.skills"), 60, 6, 4210752);
-		// this.fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 8, this.ySize - 96 + 2, 4210752);
+		this.fontRenderer.drawString("Skills", 8, 22, 0x404040);
+		this.fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 8, this.ySize - 96 + 2, 0x404040);
 	}
 
 	/**

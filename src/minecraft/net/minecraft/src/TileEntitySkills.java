@@ -1,55 +1,46 @@
 package net.minecraft.src;
 
-import java.util.Random;
-
 public class TileEntitySkills extends TileEntity implements IInventory{
     private ItemStack[] skillsContents = new ItemStack[9];
-
-    /**
-     * random number generator for instance. Used in random item stack selection.
-     */
-    private Random skillsRandom = new Random();
 
     /**
      * Returns the number of slots in the inventory.
      */
     public int getSizeInventory(){
-        return 9;
+        return skillsContents.length;
     }
 
     /**
      * Returns the stack in slot i
      */
-    public ItemStack getStackInSlot(int par1){
-        return this.skillsContents[par1];
+    public ItemStack getStackInSlot(int slot){
+        return this.skillsContents[slot];
     }
 
     /**
      * Removes from an inventory slot (first arg) up to a specified number (second arg) of items and returns them in a
      * new stack.
      */
-    public ItemStack decrStackSize(int par1, int par2){
-        if (this.skillsContents[par1] != null){
-            ItemStack var3;
+    public ItemStack decrStackSize(int slot, int stackSize){
+        if (this.skillsContents[slot] != null){
+            ItemStack item;
 
-            if (this.skillsContents[par1].stackSize <= par2){
-                var3 = this.skillsContents[par1];
-                this.skillsContents[par1] = null;
-                this.onInventoryChanged();
-                return var3;
-            }
-            else{
-                var3 = this.skillsContents[par1].splitStack(par2);
+            if (this.skillsContents[slot].stackSize <= stackSize){
+                item = this.skillsContents[slot];
+                this.skillsContents[slot] = null;
+                // this.onInventoryChanged();
+                return item;
+            }else{
+                item = this.skillsContents[slot].splitStack(stackSize);
 
-                if (this.skillsContents[par1].stackSize == 0){
-                    this.skillsContents[par1] = null;
+                if (this.skillsContents[slot].stackSize == 0){
+                    this.skillsContents[slot] = null;
                 }
 
-                this.onInventoryChanged();
-                return var3;
+                // this.onInventoryChanged();
+                return item;
             }
-        }
-        else{
+        }else{
             return null;
         }
     }
@@ -63,47 +54,22 @@ public class TileEntitySkills extends TileEntity implements IInventory{
             ItemStack var2 = this.skillsContents[par1];
             this.skillsContents[par1] = null;
             return var2;
-        }
-        else{
+        }else{
             return null;
         }
-    }
-
-    public int func_70361_i(){
-        int var1 = -1;
-        int var2 = 1;
-
-        for (int var3 = 0; var3 < this.skillsContents.length; ++var3){
-            if (this.skillsContents[var3] != null && this.skillsRandom.nextInt(var2++) == 0){
-                var1 = var3;
-            }
-        }
-
-        return var1;
     }
 
     /**
      * Sets the given item stack to the specified slot in the inventory (can be crafting or armor sections).
      */
-    public void setInventorySlotContents(int par1, ItemStack par2ItemStack){
-        this.skillsContents[par1] = par2ItemStack;
+    public void setInventorySlotContents(int slot, ItemStack item){
+        this.skillsContents[slot] = item;
 
-        if (par2ItemStack != null && par2ItemStack.stackSize > this.getInventoryStackLimit()){
-            par2ItemStack.stackSize = this.getInventoryStackLimit();
+        if (item != null && item.stackSize > this.getInventoryStackLimit()){
+            item.stackSize = this.getInventoryStackLimit();
         }
 
-        this.onInventoryChanged();
-    }
-
-    public int func_70360_a(ItemStack par1ItemStack){
-        for (int var2 = 0; var2 < this.skillsContents.length; ++var2){
-            if (this.skillsContents[var2] == null || this.skillsContents[var2].itemID == 0){
-                this.skillsContents[var2] = par1ItemStack;
-                return var2;
-            }
-        }
-
-        return -1;
+        // this.onInventoryChanged();
     }
 
     /**
@@ -118,11 +84,11 @@ public class TileEntitySkills extends TileEntity implements IInventory{
      */
     public void readFromNBT(NBTTagCompound par1NBTTagCompound){
         super.readFromNBT(par1NBTTagCompound);
-        NBTTagList var2 = par1NBTTagCompound.getTagList("Items");
+        NBTTagList tagList = par1NBTTagCompound.getTagList("Items");
         this.skillsContents = new ItemStack[this.getSizeInventory()];
 
-        for (int var3 = 0; var3 < var2.tagCount(); ++var3){
-            NBTTagCompound var4 = (NBTTagCompound)var2.tagAt(var3);
+        for (int i = 0; i < tagList.tagCount(); i++){
+            NBTTagCompound var4 = (NBTTagCompound)tagList.tagAt(i);
             int var5 = var4.getByte("Slot") & 255;
 
             if (var5 >= 0 && var5 < this.skillsContents.length){
@@ -136,18 +102,18 @@ public class TileEntitySkills extends TileEntity implements IInventory{
      */
     public void writeToNBT(NBTTagCompound par1NBTTagCompound){
         super.writeToNBT(par1NBTTagCompound);
-        NBTTagList var2 = new NBTTagList();
+        NBTTagList tagList = new NBTTagList();
 
-        for (int var3 = 0; var3 < this.skillsContents.length; ++var3){
-            if (this.skillsContents[var3] != null){
+        for (int i = 0; i < this.skillsContents.length; i++){
+            if (this.skillsContents[i] != null){
                 NBTTagCompound var4 = new NBTTagCompound();
-                var4.setByte("Slot", (byte)var3);
-                this.skillsContents[var3].writeToNBT(var4);
-                var2.appendTag(var4);
+                var4.setByte("Slot", (byte)i);
+                this.skillsContents[i].writeToNBT(var4);
+                tagList.appendTag(var4);
             }
         }
 
-        par1NBTTagCompound.setTag("Items", var2);
+        par1NBTTagCompound.setTag("Items", tagList);
     }
 
     /**
@@ -155,7 +121,7 @@ public class TileEntitySkills extends TileEntity implements IInventory{
      * this more of a set than a get?*
      */
     public int getInventoryStackLimit(){
-        return 1;
+        return 64;
     }
 
     /**
