@@ -49,11 +49,11 @@ public class TileEntitySkills extends TileEntity implements IInventory{
      * When some containers are closed they call this on each slot, then drop whatever it returns as an EntityItem -
      * like when you close a workbench GUI.
      */
-    public ItemStack getStackInSlotOnClosing(int par1){
-        if (this.skillsContents[par1] != null){
-            ItemStack var2 = this.skillsContents[par1];
-            this.skillsContents[par1] = null;
-            return var2;
+    public ItemStack getStackInSlotOnClosing(int slot){
+        if (this.skillsContents[slot] != null){
+            ItemStack item = this.skillsContents[slot];
+            // this.skillsContents[slot] = null;
+            return item;
         }else{
             return null;
         }
@@ -65,11 +65,11 @@ public class TileEntitySkills extends TileEntity implements IInventory{
     public void setInventorySlotContents(int slot, ItemStack item){
         this.skillsContents[slot] = item;
 
-        if (item != null && item.stackSize > this.getInventoryStackLimit()){
-            item.stackSize = this.getInventoryStackLimit();
-        }
+        // if (item != null && item.stackSize > this.getInventoryStackLimit()){
+        //     item.stackSize = this.getInventoryStackLimit();
+        // }
 
-        // this.onInventoryChanged();
+        this.onInventoryChanged();
     }
 
     /**
@@ -77,6 +77,10 @@ public class TileEntitySkills extends TileEntity implements IInventory{
      */
     public String getInvName(){
         return "container.skills";
+    }
+
+    public void onInventoryChanged(){
+        System.out.println("Inventory Changed.");
     }
 
     /**
