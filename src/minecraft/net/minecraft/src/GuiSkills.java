@@ -3,7 +3,7 @@ package net.minecraft.src;
 import org.lwjgl.opengl.GL11;
 
 public class GuiSkills extends GuiContainer{
-	public GuiSkills(InventoryPlayer inventory, IInventory skillbar){
+	public GuiSkills(IInventory inventory, IInventory skillbar){
 		super(new ContainerSkills(inventory, skillbar));
 	}
 

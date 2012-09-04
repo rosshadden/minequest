@@ -7,7 +7,7 @@ public class TileEntitySkills extends TileEntity implements IInventory{
      * Returns the number of slots in the inventory.
      */
     public int getSizeInventory(){
-        return skillsContents.length;
+        return 9;
     }
 
     /**
@@ -28,7 +28,7 @@ public class TileEntitySkills extends TileEntity implements IInventory{
             if (this.skillsContents[slot].stackSize <= stackSize){
                 item = this.skillsContents[slot];
                 this.skillsContents[slot] = null;
-                // this.onInventoryChanged();
+                this.onInventoryChanged();
                 return item;
             }else{
                 item = this.skillsContents[slot].splitStack(stackSize);
@@ -37,7 +37,7 @@ public class TileEntitySkills extends TileEntity implements IInventory{
                     this.skillsContents[slot] = null;
                 }
 
-                // this.onInventoryChanged();
+                this.onInventoryChanged();
                 return item;
             }
         }else{

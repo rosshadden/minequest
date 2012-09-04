@@ -14,14 +14,18 @@ public class BlockBookOfSkills extends Block{
         return mod_Minequest.bookOfSkills.blockID;
     }
 
-	public int getBlockTextureFromSide(int i){
-		return i * 2 + 16;
-	}
+	// public int getBlockTextureFromSide(int i){
+	// 	return i * 2 + 16;
+	// }
 
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9){
-		TileEntitySkills tileEntity = (TileEntitySkills)world.getBlockTileEntity(x, y, z);
+		Object tileEntity = (TileEntitySkills)world.getBlockTileEntity(x, y, z);
 
-		ModLoader.openGUI(player, new GuiSkills(player.inventory, tileEntity));
+		// if(tileEntity == null){
+		// 	return true;
+		// }
+
+		ModLoader.openGUI(player, new GuiSkills(player.inventory, (IInventory)tileEntity));
 
 		return true;
 	}

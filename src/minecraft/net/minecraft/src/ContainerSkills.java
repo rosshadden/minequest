@@ -11,7 +11,7 @@ public class ContainerSkills extends Container{
 
         for (i = 0; i < 9; ++i){
             this.addSlotToContainer(
-                new SlotSkill(fakeSkillbar, i, 8 + i * 18, 33)
+                new Slot(theSkillbar, i, 8 + i * 18, 33)
             );
         }
 

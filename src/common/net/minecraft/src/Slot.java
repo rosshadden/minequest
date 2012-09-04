@@ -79,6 +79,7 @@ public class Slot
      */
     public ItemStack getStack()
     {
+        //broken
         return this.inventory.getStackInSlot(this.slotIndex);
     }
 
